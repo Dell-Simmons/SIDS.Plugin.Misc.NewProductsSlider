@@ -1,0 +1,35 @@
+﻿@model Nop.Plugin.SIDS.NivoSlider.Models.RecentArrivalsPublicInfoModel
+@{
+    Layout = "";
+}
+
+<link rel="stylesheet" href="~/Plugins/SIDS.NivoSlider/Content/nivoslider/nivo-slider.css" />
+<link rel="stylesheet" href="~/Plugins/SIDS.NivoSlider/Content/nivoslider/themes/custom/custom.css" />
+<script asp-exclude-from-bundle="true" src="~/Plugins/SIDS.NivoSlider/Scripts/jquery.nivo.slider.js" asp-location="Footer"></script>
+ 
+<div class="slider-wrapper theme-custom">
+
+    <h1 style="line-height:24px;font-size:18px;bold;text-align:center;">Here are some of our most recent additions.  Click on the scan for more information:</h1>
+ 
+    <div id="nivo-slider" class="nivoSlider">
+        @{
+            foreach(var s in Model.SliderPics)
+            {
+                var dataSlide = new ViewDataDictionary(ViewData)
+                {
+                    {"pictureUrl", s.PictureUrl},
+                    { "text", s.Text},
+                    { "link", s.Link},
+                    {"alttext", s.AltText },
+                    {"dataTransition", "sliceDown"}
+                };
+                    @await Html.PartialAsync("~/Plugins/SIDS.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide)
+            }
+         }
+    </div>
+</div>
+<script asp-location="Footer">
+    $(window).on('load', function () {
+        $('#nivo-slider').nivoSlider();
+    });
+</script>
