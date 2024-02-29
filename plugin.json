@@ -1,11 +1,11 @@
 ﻿{
-  "Group": "",
-  "FriendlyName": "",
-  "SystemName": "",
+  "Group": "SIDS",
+  "FriendlyName": "Recent Items Slider",
+  "SystemName": "SIDS.NewProductSlider",
   "Version": "1.00",
   "SupportedVersions": [ "4.60" ],
-  "Author": "Author Name",
+  "Author": "Steamboat Island Duck Stamps",
   "DisplayOrder": 1,
-  "FileName": "SIDS.Plugin.Misc.NewProductsSlider.dll",
-  "Description": ""
+  "FileName": "SIDS.Plugin.Misc.NewProductSlider.dll",
+  "Description": "Combines product name and short description"
 }
