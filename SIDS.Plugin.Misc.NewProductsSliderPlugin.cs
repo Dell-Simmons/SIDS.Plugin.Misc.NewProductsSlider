@@ -9,6 +9,8 @@ using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Plugins;
 using Nop.Web.Framework.Infrastructure;
+using System;
+using SIDS.Plugin.Misc.NewProductsSlider.Components;
 
 namespace SIDS.Plugin.Misc.NewProductsSlider
 {
@@ -61,9 +63,9 @@ namespace SIDS.Plugin.Misc.NewProductsSlider
         /// </summary>
         /// <param name="widgetZone">Name of the widget zone</param>
         /// <returns>View component name</returns>
-        public string GetWidgetViewComponent(string widgetZone)
+        public Type GetWidgetViewComponent(string widgetZone)
         {
-            return "WidgetsNivoSlider";
+            return typeof(WidgetsNivoSliderViewComponent);
         }
 
         /// <summary>
@@ -131,4 +133,4 @@ namespace SIDS.Plugin.Misc.NewProductsSlider
         public bool HideInWidgetList => false;
     }
 }
-}
+
