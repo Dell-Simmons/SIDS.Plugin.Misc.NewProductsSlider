@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Nop.Web.Framework.Models;
 
-namespace Nop.Plugin.SIDS.NivoSlider.Models
+namespace SIDS.Plugin.Misc.NewProductsSlider.Models
 {
     public record RecentArrivalsPublicInfoModel : BaseNopModel
     {

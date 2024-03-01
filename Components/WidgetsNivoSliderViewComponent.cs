@@ -7,14 +7,14 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Media;
 using Nop.Core.Infrastructure;
-using Nop.Plugin.SIDS.NivoSlider.Infrastructure.Cache;
-using Nop.Plugin.SIDS.NivoSlider.Models;
 using Nop.Services.Catalog;
 using Nop.Services.Configuration;
 using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Seo;
 using Nop.Web.Framework.Components;
+using SIDS.Plugin.Misc.NewProductsSlider.Infrastructure.Cache;
+using SIDS.Plugin.Misc.NewProductsSlider.Models;
 
 namespace SIDS.Plugin.Misc.NewProductsSlider.Components
 {
@@ -62,7 +62,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
             await _logger.InformationAsync(string.Format("in SIDS.NivoSlider.  There are {0} Slider Pics to show", nivoSliderProducts.Count));
                 foreach (var p in nivoSliderProducts)
                 {
-                    SliderPicModel sliderPicModel = new SliderPicModel();
+                SliderPicModel sliderPicModel = new SliderPicModel();
 
                     List<Picture> productPictures = (List<Picture>)await _pictureService.GetPicturesByProductIdAsync(p.Id, 1);
                     if(productPictures == null)
@@ -91,7 +91,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
                     return Content("");
                 }
 
-                return View("~/Plugins/SIDS.NivoSlider/Views/RecentArrivalsPublicInfo.cshtml", model);
+                return View("~/Plugins/SIDS.NewProductsSlider/Views/RecentArrivalsPublicInfo.cshtml", model);
             
         }
 

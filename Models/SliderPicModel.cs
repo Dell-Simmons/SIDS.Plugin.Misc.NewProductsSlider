@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Nop.Web.Framework.Models;
 
-namespace Nop.Plugin.SIDS.NivoSlider.Models
+namespace SIDS.Plugin.Misc.NewProductsSlider.Models
 {
     public record SliderPicModel : BaseNopModel
     {

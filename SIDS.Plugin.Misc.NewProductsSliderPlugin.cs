@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Nop.Core.Infrastructure;
 using Nop.Core;
-using Nop.Plugin.SIDS.NivoSlider;
 using System.Threading.Tasks;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;

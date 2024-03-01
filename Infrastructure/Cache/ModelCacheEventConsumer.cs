@@ -4,7 +4,7 @@ using Nop.Core.Domain.Configuration;
 using Nop.Core.Events;
 using Nop.Services.Events;
 
-namespace Nop.Plugin.SIDS.NivoSlider.Infrastructure.Cache
+namespace SIDS.Plugin.Misc.NewProductsSlider.Infrastructure.Cache
 {
     /// <summary>
     /// Model cache event consumer (used for caching of presentation layer models)

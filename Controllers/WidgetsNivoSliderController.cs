@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
-using Nop.Plugin.SIDS.NivoSlider.Models;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Media;
@@ -11,8 +10,9 @@ using Nop.Services.Security;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
+using SIDS.Plugin.Misc.NewProductsSlider.Models;
 
-namespace Nop.Plugin.SIDS.NivoSlider.Controllers
+namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
 {
     [AuthorizeAdmin]
     [Area(AreaNames.Admin)]

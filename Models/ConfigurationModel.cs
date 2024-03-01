@@ -2,7 +2,7 @@
 using Nop.Web.Framework.Mvc.ModelBinding;
 using Nop.Web.Framework.Models;
 
-namespace Nop.Plugin.SIDS.NivoSlider.Models
+namespace SIDS.Plugin.Misc.NewProductsSlider.Models
 {
     public record ConfigurationModel : BaseNopModel
     {

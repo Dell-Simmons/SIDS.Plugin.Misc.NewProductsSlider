@@ -1,11 +1,11 @@
-﻿@model Nop.Plugin.SIDS.NivoSlider.Models.RecentArrivalsPublicInfoModel
+﻿@model SIDS.Plugin.Misc.NewProductsSlider.Models.RecentArrivalsPublicInfoModel
 @{
     Layout = "";
 }
 
-<link rel="stylesheet" href="~/Plugins/SIDS.NivoSlider/Content/nivoslider/nivo-slider.css" />
-<link rel="stylesheet" href="~/Plugins/SIDS.NivoSlider/Content/nivoslider/themes/custom/custom.css" />
-<script asp-exclude-from-bundle="true" src="~/Plugins/SIDS.NivoSlider/Scripts/jquery.nivo.slider.js" asp-location="Footer"></script>
+<link rel="stylesheet" href="~/Plugins/SIDS.NewProductsSlider/Content/nivoslider/nivo-slider.css" />
+<link rel="stylesheet" href="~/Plugins/SIDS.NewProductsSlider/Content/nivoslider/themes/custom/custom.css" />
+<script asp-exclude-from-bundle="true" src="~/Plugins/SIDS.NewProductSlider/Scripts/jquery.nivo.slider.js" asp-location="Footer"></script>
  
 <div class="slider-wrapper theme-custom">
 
@@ -23,7 +23,7 @@
                     {"alttext", s.AltText },
                     {"dataTransition", "sliceDown"}
                 };
-                    @await Html.PartialAsync("~/Plugins/SIDS.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide)
+                    @await Html.PartialAsync("~/Plugins/SIDS.NewProductsSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide)
             }
          }
     </div>

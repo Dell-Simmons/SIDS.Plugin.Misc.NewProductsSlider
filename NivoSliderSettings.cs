@@ -1,6 +1,6 @@
 ﻿using Nop.Core.Configuration;
 
-namespace Nop.Plugin.SIDS.NivoSlider
+namespace SIDS.Plugin.Misc.NewProductsSlider
 {
     public class NivoSliderSettings : ISettings
     {
