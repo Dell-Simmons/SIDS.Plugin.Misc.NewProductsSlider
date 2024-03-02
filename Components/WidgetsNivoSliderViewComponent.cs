@@ -59,7 +59,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
                 var nivoSliderProducts = await _productService.GetProductsMarkedAsNewAsync();
                 var model = new RecentArrivalsPublicInfoModel();
             model.SliderPics = new List<SliderPicModel>();
-            await _logger.InformationAsync(string.Format("in SIDS.NivoSlider.  There are {0} Slider Pics to show", nivoSliderProducts.Count));
+            await _logger.InformationAsync(string.Format("in SIDS.NewProductsSlider.  There are {0} Slider Pics to show", nivoSliderProducts.Count));
                 foreach (var p in nivoSliderProducts)
                 {
                 SliderPicModel sliderPicModel = new SliderPicModel();

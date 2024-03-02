@@ -98,7 +98,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
                 model.AltText5_OverrideForStore = await _settingService.SettingExistsAsync(nivoSliderSettings, x => x.AltText5, storeScope);
             }
 
-            return View("~/Plugins/SIDS.NivoSlider/Views/Configure.cshtml", model);
+            return View("~/Plugins/SIDS.NewProductsSlider/Views/Configure.cshtml", model);
         }
 
         [HttpPost]
