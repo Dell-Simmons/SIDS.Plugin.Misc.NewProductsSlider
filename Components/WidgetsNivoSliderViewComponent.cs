@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Media;
@@ -15,22 +11,29 @@ using Nop.Services.Seo;
 using Nop.Web.Framework.Components;
 using SIDS.Plugin.Misc.NewProductsSlider.Infrastructure.Cache;
 using SIDS.Plugin.Misc.NewProductsSlider.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SIDS.Plugin.Misc.NewProductsSlider.Components
 {
     [ViewComponent(Name = "WidgetsNivoSlider")]
     public class WidgetsNivoSliderViewComponent : NopViewComponent
     {
-        private readonly IStoreContext _storeContext;
-        private readonly IStaticCacheManager _staticCacheManager;
-        private readonly ISettingService _settingService;
-        private readonly IPictureService _pictureService;
-        private readonly IWebHelper _webHelper;
-        private readonly IProductService _productService;
-        private readonly IUrlRecordService _urlRecordService;
-        private readonly INopFileProvider _nopFileProvider;
+        #region Constants and Fields
         private readonly ILogger _logger;
+        private readonly INopFileProvider _nopFileProvider;
+        private readonly IPictureService _pictureService;
+        private readonly IProductService _productService;
+        private readonly ISettingService _settingService;
+        private readonly IStaticCacheManager _staticCacheManager;
+        private readonly IStoreContext _storeContext;
+        private readonly IUrlRecordService _urlRecordService;
+        private readonly IWebHelper _webHelper;
+        #endregion
 
+        #region Constructors
         public WidgetsNivoSliderViewComponent(IStoreContext storeContext,
             IStaticCacheManager staticCacheManager,
             ISettingService settingService,
@@ -38,7 +41,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
             IWebHelper webHelper,
             IProductService productService,
             IUrlRecordService urlRecordService,
-            INopFileProvider nopFileProvider, 
+            INopFileProvider nopFileProvider,
             ILogger logger)
         {
             _storeContext = storeContext;
@@ -51,50 +54,52 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
             _nopFileProvider = nopFileProvider;
             _logger = logger;
         }
+        #endregion
 
+        #region Methods
         /// <returns>A task that represents the asynchronous operation</returns>
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
-           
-                var nivoSliderProducts = await _productService.GetProductsMarkedAsNewAsync();
-                var model = new RecentArrivalsPublicInfoModel();
+
+            var nivoSliderProducts = await _productService.GetProductsMarkedAsNewAsync();
+            var model = new RecentArrivalsPublicInfoModel();
             model.SliderPics = new List<SliderPicModel>();
             await _logger.InformationAsync(string.Format("in SIDS.NewProductsSlider.  There are {0} Slider Pics to show", nivoSliderProducts.Count));
-                foreach (var p in nivoSliderProducts)
-                {
+           
+            foreach (var p in nivoSliderProducts)
+            {
                 SliderPicModel sliderPicModel = new SliderPicModel();
 
-                    List<Picture> productPictures = (List<Picture>)await _pictureService.GetPicturesByProductIdAsync(p.Id, 1);
-                    if(productPictures == null)
-                    {
-                        continue;
-                    }
-                    if (!productPictures.Any())
-                    {
-                        continue;
-                    }
+                List<Picture> productPictures = (List<Picture>)await _pictureService.GetPicturesByProductIdAsync(p.Id, 1);
+                if (productPictures == null)
+                {
+                    continue;
+                }
+                if (!productPictures.Any())
+                {
+                    continue;
+                }
 
                 Picture defaultPic = productPictures.FirstOrDefault();
                 sliderPicModel.PictureUrl = await GetPictureUrlAsync(defaultPic.Id);
 
-                    var seName = await _urlRecordService.GetSeNameAsync(p, 0, true, false);
-                    sliderPicModel.Link = _webHelper.GetStoreLocation() + seName;
-                    
-                    sliderPicModel.Text = p.Name;
-                    sliderPicModel.AltText = defaultPic.TitleAttribute;
+                var seName = await _urlRecordService.GetSeNameAsync(p, 0, true, false);
+                sliderPicModel.Link = _webHelper.GetStoreLocation() + seName;
 
-                    model.SliderPics.Add(sliderPicModel);
-                }
-                var goodPics = from m in model.SliderPics where (m.PictureUrl != String.Empty) select m;
-                if (!goodPics.Any())
-                {
-                    return Content("");
-                }
+                sliderPicModel.Text = p.Name;
+                sliderPicModel.AltText = defaultPic.TitleAttribute;
 
-                return View("~/Plugins/SIDS.NewProductsSlider/Views/RecentArrivalsPublicInfo.cshtml", model);
-            
+                model.SliderPics.Add(sliderPicModel);
+            }
+            var goodPics = from m in model.SliderPics where (m.PictureUrl != String.Empty) select m;
+            if (!goodPics.Any())
+            {
+                return Content(string.Empty);
+            }
+
+            return View("~/Plugins/SIDS.NewProductsSlider/Views/RecentArrivalsPublicInfo.cshtml", model);
+
         }
-
         /// <returns>A task that represents the asynchronous operation</returns>
         protected async Task<string> GetPictureUrlAsync(int pictureId)
         {
@@ -104,9 +109,10 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
             return await _staticCacheManager.GetAsync(cacheKey, async () =>
             {
                 //little hack here. nulls aren't cacheable so set it to ""
-                var url = await _pictureService.GetPictureUrlAsync(pictureId, showDefaultPicture: false) ?? "";
+                var url = await _pictureService.GetPictureUrlAsync(pictureId, showDefaultPicture: false) ?? string.Empty;
                 return url;
             });
         }
+        #endregion
     }
 }

@@ -73,42 +73,42 @@ namespace SIDS.Plugin.Misc.NewProductsSlider
         /// <returns>A task that represents the asynchronous operation</returns>
         public override async Task InstallAsync()
         {
-            //pictures
-            var sampleImagesPath = _fileProvider.MapPath("~/Plugins/Widgets.NivoSlider/Content/nivoslider/sample-images/");
+            ////pictures
+            //var sampleImagesPath = _fileProvider.MapPath("~/Plugins/Widgets.NivoSlider/Content/nivoslider/sample-images/");
 
-            //settings
-            var settings = new NivoSliderSettings
-            {
-                Picture1Id = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner1.jpg")), MimeTypes.ImagePJpeg, "banner_1")).Id,
-                Text1 = "",
-                Link1 = _webHelper.GetStoreLocation(false),
-                Picture2Id = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner2.jpg")), MimeTypes.ImagePJpeg, "banner_2")).Id,
-                Text2 = "",
-                Link2 = _webHelper.GetStoreLocation(false)
-                //Picture3Id = _pictureService.InsertPicture(File.ReadAllBytes(_fileProvider.Combine(sampleImagesPath,"banner3.jpg")), MimeTypes.ImagePJpeg, "banner_3").Id,
-                //Text3 = "",
-                //Link3 = _webHelper.GetStoreLocation(false),
-            };
-            await _settingService.SaveSettingAsync(settings);
+            ////settings
+            //var settings = new NivoSliderSettings
+            //{
+            //    Picture1Id = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner1.jpg")), MimeTypes.ImagePJpeg, "banner_1")).Id,
+            //    Text1 = "",
+            //    Link1 = _webHelper.GetStoreLocation(false),
+            //    Picture2Id = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner2.jpg")), MimeTypes.ImagePJpeg, "banner_2")).Id,
+            //    Text2 = "",
+            //    Link2 = _webHelper.GetStoreLocation(false)
+            //    //Picture3Id = _pictureService.InsertPicture(File.ReadAllBytes(_fileProvider.Combine(sampleImagesPath,"banner3.jpg")), MimeTypes.ImagePJpeg, "banner_3").Id,
+            //    //Text3 = "",
+            //    //Link3 = _webHelper.GetStoreLocation(false),
+            //};
+            //await _settingService.SaveSettingAsync(settings);
 
-            await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
-            {
-                ["Plugins.Widgets.NivoSlider.Picture1"] = "Picture 1",
-                ["Plugins.Widgets.NivoSlider.Picture2"] = "Picture 2",
-                ["Plugins.Widgets.NivoSlider.Picture3"] = "Picture 3",
-                ["Plugins.Widgets.NivoSlider.Picture4"] = "Picture 4",
-                ["Plugins.Widgets.NivoSlider.Picture5"] = "Picture 5",
-                ["Plugins.Widgets.NivoSlider.Picture"] = "Picture",
-                ["Plugins.Widgets.NivoSlider.Picture.Hint"] = "Upload picture.",
-                ["Plugins.Widgets.NivoSlider.Text"] = "Comment",
-                ["Plugins.Widgets.NivoSlider.Text.Hint"] = "Enter comment for picture. Leave empty if you don't want to display any text.",
-                ["Plugins.Widgets.NivoSlider.Link"] = "URL",
-                ["Plugins.Widgets.NivoSlider.Link.Hint"] = "Enter URL. Leave empty if you don't want this picture to be clickable.",
-                ["Plugins.Widgets.NivoSlider.AltText"] = "Image alternate text",
-                ["Plugins.Widgets.NivoSlider.AltText.Hint"] = "Enter alternate text that will be added to image."
-            });
+            //await _localizationService.AddOrUpdateLocaleResourceAsync(new Dictionary<string, string>
+            //{
+            //    ["Plugins.Widgets.NivoSlider.Picture1"] = "Picture 1",
+            //    ["Plugins.Widgets.NivoSlider.Picture2"] = "Picture 2",
+            //    ["Plugins.Widgets.NivoSlider.Picture3"] = "Picture 3",
+            //    ["Plugins.Widgets.NivoSlider.Picture4"] = "Picture 4",
+            //    ["Plugins.Widgets.NivoSlider.Picture5"] = "Picture 5",
+            //    ["Plugins.Widgets.NivoSlider.Picture"] = "Picture",
+            //    ["Plugins.Widgets.NivoSlider.Picture.Hint"] = "Upload picture.",
+            //    ["Plugins.Widgets.NivoSlider.Text"] = "Comment",
+            //    ["Plugins.Widgets.NivoSlider.Text.Hint"] = "Enter comment for picture. Leave empty if you don't want to display any text.",
+            //    ["Plugins.Widgets.NivoSlider.Link"] = "URL",
+            //    ["Plugins.Widgets.NivoSlider.Link.Hint"] = "Enter URL. Leave empty if you don't want this picture to be clickable.",
+            //    ["Plugins.Widgets.NivoSlider.AltText"] = "Image alternate text",
+            //    ["Plugins.Widgets.NivoSlider.AltText.Hint"] = "Enter alternate text that will be added to image."
+            //});
 
-            await base.InstallAsync();
+            //await base.InstallAsync();
         }
 
         /// <summary>
@@ -117,13 +117,13 @@ namespace SIDS.Plugin.Misc.NewProductsSlider
         /// <returns>A task that represents the asynchronous operation</returns>
         public override async Task UninstallAsync()
         {
-            //settings
-            await _settingService.DeleteSettingAsync<NivoSliderSettings>();
+            ////settings
+            //await _settingService.DeleteSettingAsync<NivoSliderSettings>();
 
-            //locales
-            await _localizationService.DeleteLocaleResourcesAsync("Plugins.Widgets.NivoSlider");
+            ////locales
+            //await _localizationService.DeleteLocaleResourcesAsync("Plugins.Widgets.NivoSlider");
 
-            await base.UninstallAsync();
+            //await base.UninstallAsync();
         }
 
         /// <summary>

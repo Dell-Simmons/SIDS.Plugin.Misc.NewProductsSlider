@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
@@ -11,6 +9,8 @@ using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using SIDS.Plugin.Misc.NewProductsSlider.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
 {
@@ -19,16 +19,19 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
     [AutoValidateAntiforgeryToken]
     public class WidgetsNivoSliderController : BasePluginController
     {
+        #region Constants and Fields
         private readonly ILocalizationService _localizationService;
         private readonly INotificationService _notificationService;
         private readonly IPermissionService _permissionService;
         private readonly IPictureService _pictureService;
         private readonly ISettingService _settingService;
         private readonly IStoreContext _storeContext;
+        #endregion
 
+        #region Constructors
         public WidgetsNivoSliderController(ILocalizationService localizationService,
             INotificationService notificationService,
-            IPermissionService permissionService, 
+            IPermissionService permissionService,
             IPictureService pictureService,
             ISettingService settingService,
             IStoreContext storeContext)
@@ -40,11 +43,15 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
             _settingService = settingService;
             _storeContext = storeContext;
         }
+        #endregion
 
+        #region Methods
         public async Task<IActionResult> Configure()
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageWidgets))
+            {
                 return AccessDeniedView();
+            }
 
             //load settings for a chosen store scope
             var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
@@ -100,19 +107,20 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
 
             return View("~/Plugins/SIDS.NewProductsSlider/Views/Configure.cshtml", model);
         }
-
         [HttpPost]
         public async Task<IActionResult> Configure(ConfigurationModel model)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageWidgets))
+            {
                 return AccessDeniedView();
+            }
 
             //load settings for a chosen store scope
             var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
             var nivoSliderSettings = await _settingService.LoadSettingAsync<NivoSliderSettings>(storeScope);
 
             //get previous picture identifiers
-            var previousPictureIds = new[] 
+            var previousPictureIds = new[]
             {
                 nivoSliderSettings.Picture1Id,
                 nivoSliderSettings.Picture2Id,
@@ -168,7 +176,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
 
             //now clear settings cache
             await _settingService.ClearCacheAsync();
-            
+
             //get current picture identifiers
             var currentPictureIds = new[]
             {
@@ -181,15 +189,18 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
 
             //delete an old picture (if deleted or updated)
             foreach (var pictureId in previousPictureIds.Except(currentPictureIds))
-            { 
+            {
                 var previousPicture = await _pictureService.GetPictureByIdAsync(pictureId);
                 if (previousPicture != null)
+                {
                     await _pictureService.DeletePictureAsync(previousPicture);
+                }
             }
 
             _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Plugins.Saved"));
-            
+
             return await Configure();
         }
+        #endregion
     }
 }
