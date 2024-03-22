@@ -11,13 +11,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Factories\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="Factories\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="Factories\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Content\nivoslider\license.txt" />
     <None Remove="Content\nivoslider\nivo-slider.css" />
     <None Remove="Content\nivoslider\README" />
-    <None Remove="Content\nivoslider\sample-images\banner1.jpg" />
-    <None Remove="Content\nivoslider\sample-images\banner2.jpg" />
-    <None Remove="Content\nivoslider\sample-images\banner_01.webp" />
-    <None Remove="Content\nivoslider\sample-images\banner_02.webp" />
     <None Remove="Content\nivoslider\themes\bar\arrows.png" />
     <None Remove="Content\nivoslider\themes\bar\bar.css" />
     <None Remove="Content\nivoslider\themes\bar\bullets.png" />
@@ -56,18 +64,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\nivoslider\README">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\nivoslider\sample-images\banner1.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\nivoslider\sample-images\banner2.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\nivoslider\sample-images\banner_01.webp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\nivoslider\sample-images\banner_02.webp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\nivoslider\themes\bar\arrows.png">
@@ -171,9 +167,6 @@
     <Folder Include="Areas\Admin\Extensions\" />
     <Folder Include="Areas\Admin\Factories\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Factories\" />
-    <Folder Include="Services\" />
   </ItemGroup>
  
   <!-- This target execute after "Build" target -->
