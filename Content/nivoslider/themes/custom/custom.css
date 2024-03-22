@@ -33,7 +33,7 @@
 	font-size: 0;
 }
 .theme-custom .nivo-controlNav a {
-	display: inline-block;
+/*	display: inline-block;*/
 	width: 14px;
 	height: 14px;
 	margin: 0 7px;
@@ -76,9 +76,20 @@
 }
 
 /* CAPTION */
+  .theme-custom .nivo-control {
+    background-color: #333;
+  }
+
+    .theme-custom .nivo-control a {
+      color: #fff;
+    }
+
+      .theme-custom .nivo-control a:hover {
+        color: #4ab2f1;
+      }
 
 .theme-custom .nivo-caption {
-	background-color: 333;
+	background-color: #333;
 }
 .theme-custom .nivo-caption a {
 	color: #fff;
