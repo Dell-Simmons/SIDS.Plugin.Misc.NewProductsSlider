@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.Razor;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace SIDS.Plugin.Misc.NewProductsSlider.Infrastructure
 {
     public class ViewLocationExpander : IViewLocationExpander
     {
-        public void PopulateValues(ViewLocationExpanderContext context)
-        {
-        }
-
+        #region Methods
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {
             if (context.AreaName == "Admin")
@@ -23,5 +20,9 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Infrastructure
 
             return viewLocations;
         }
+        public void PopulateValues(ViewLocationExpanderContext context)
+        {
+        }
+        #endregion
     }
 }

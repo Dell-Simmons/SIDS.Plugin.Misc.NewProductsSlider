@@ -20,28 +20,13 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
     public class WidgetsNivoSliderController : BasePluginController
     {
         #region Constants and Fields
-        private readonly ILocalizationService _localizationService;
-        private readonly INotificationService _notificationService;
         private readonly IPermissionService _permissionService;
-        private readonly IPictureService _pictureService;
-        private readonly ISettingService _settingService;
-        private readonly IStoreContext _storeContext;
         #endregion
 
         #region Constructors
-        public WidgetsNivoSliderController(ILocalizationService localizationService,
-            INotificationService notificationService,
-            IPermissionService permissionService,
-            IPictureService pictureService,
-            ISettingService settingService,
-            IStoreContext storeContext)
+        public WidgetsNivoSliderController(IPermissionService permissionService)
         {
-            _localizationService = localizationService;
-            _notificationService = notificationService;
             _permissionService = permissionService;
-            _pictureService = pictureService;
-            _settingService = settingService;
-            _storeContext = storeContext;
         }
         #endregion
 
@@ -53,21 +38,20 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
                 return AccessDeniedView();
             }
 
-            ConfigurationModel model = new();
 
-            return View("~/Plugins/SIDS.NewProductsSlider/Views/Configure.cshtml", model);
+            return View("~/Plugins/SIDS.NewProductsSlider/Views/Configure.cshtml");
         }
-        [HttpPost]
-        public async Task<IActionResult> Configure(ConfigurationModel model)
-        {
-            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageWidgets))
-            {
-                return AccessDeniedView();
-            }
+        //[HttpPost]
+        //public async Task<IActionResult> Configure()
+        //{
+        //    if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageWidgets))
+        //    {
+        //        return AccessDeniedView();
+        //    }
 
         
-            return await Configure();
-        }
+        //    return await Configure();
+        //}
         #endregion
     }
 }

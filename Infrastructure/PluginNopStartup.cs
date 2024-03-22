@@ -15,8 +15,6 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Infrastructure
                 options.ViewLocationExpanders.Add(new ViewLocationExpander());
             });
 
-            //register services and interfaces
-            //services.AddScoped<CustomModelFactory, ICustomerModelFactory>();
         }
 
         public void Configure(IApplicationBuilder application)
