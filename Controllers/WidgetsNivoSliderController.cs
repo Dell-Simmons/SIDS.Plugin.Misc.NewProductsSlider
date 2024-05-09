@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
 {
     [AuthorizeAdmin]
-    [Area(AreaNames.Admin)]
+    [Area(AreaNames.ADMIN)]
     [AutoValidateAntiforgeryToken]
     public class WidgetsNivoSliderController : BasePluginController
     {
