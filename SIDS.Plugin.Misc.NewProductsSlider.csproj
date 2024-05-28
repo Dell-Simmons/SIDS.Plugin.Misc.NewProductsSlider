@@ -11,12 +11,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\Controllers\**" />
+    <Compile Remove="Areas\Admin\Extensions\**" />
+    <Compile Remove="Areas\Admin\Factories\**" />
+    <Compile Remove="Areas\Admin\Models\**" />
     <Compile Remove="Extensions\**" />
     <Compile Remove="Factories\**" />
     <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Areas\Admin\Controllers\**" />
+    <EmbeddedResource Remove="Areas\Admin\Extensions\**" />
+    <EmbeddedResource Remove="Areas\Admin\Factories\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\**" />
     <EmbeddedResource Remove="Extensions\**" />
     <EmbeddedResource Remove="Factories\**" />
     <EmbeddedResource Remove="Services\**" />
+    <None Remove="Areas\Admin\Controllers\**" />
+    <None Remove="Areas\Admin\Extensions\**" />
+    <None Remove="Areas\Admin\Factories\**" />
+    <None Remove="Areas\Admin\Models\**" />
     <None Remove="Extensions\**" />
     <None Remove="Factories\**" />
     <None Remove="Services\**" />
@@ -163,10 +175,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Extensions\" />
-    <Folder Include="Areas\Admin\Factories\" />
-    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\" />
   </ItemGroup>
  
   <!-- This target execute after "Build" target -->
