@@ -2,7 +2,7 @@
   "Group": "SIDS",
   "FriendlyName": "Recent Items Slider",
   "SystemName": "SIDS.NewProductsSlider",
-  "Version": "1.00",
+  "Version": "6.7.2024",
   "SupportedVersions": [ "4.70" ],
   "Author": "Steamboat Island Duck Stamps",
   "DisplayOrder": 1,
