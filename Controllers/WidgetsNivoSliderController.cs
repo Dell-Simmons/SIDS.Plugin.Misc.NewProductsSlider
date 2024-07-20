@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
+using Nop.Services.Catalog;
 using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Media;
@@ -9,6 +10,7 @@ using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using SIDS.Plugin.Misc.NewProductsSlider.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,12 +23,14 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
     {
         #region Constants and Fields
         private readonly IPermissionService _permissionService;
+        private readonly IProductService _productService;
         #endregion
 
         #region Constructors
-        public WidgetsNivoSliderController(IPermissionService permissionService)
+        public WidgetsNivoSliderController(IPermissionService permissionService, IProductService productService)
         {
             _permissionService = permissionService;
+            _productService = productService;
         }
         #endregion
 
@@ -37,9 +41,25 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
             {
                 return AccessDeniedView();
             }
+          
 
+            var nivoSliderProducts = await _productService.GetProductsMarkedAsNewAsync();
+            NewProductsListModel model = new();
+            model.Products = new List<NewProductModel>();
+                  
+            foreach (var p in nivoSliderProducts)
+            {
+                NewProductModel newProduct = new()
+                {
+                    Sku = p.Sku,
+                    IsNew = p.MarkAsNew,
+                    StartDate = p.MarkAsNewStartDateTimeUtc ?? default,
+                    EndDate = p.MarkAsNewEndDateTimeUtc ?? default
+                };
+                model.Products.Add(newProduct);
+            }
 
-            return View("~/Plugins/SIDS.NewProductsSlider/Views/Configure.cshtml");
+                return View("~/Plugins/SIDS.NewProductsSlider/Views/Configure.cshtml",model);
         }
         //[HttpPost]
         //public async Task<IActionResult> Configure()
