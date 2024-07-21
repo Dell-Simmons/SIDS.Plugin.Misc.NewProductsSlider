@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Nop.Web.Framework.Models;
 
 namespace SIDS.Plugin.Misc.NewProductsSlider.Models;
-internal record NewProductsListModel: BaseNopModel
+public record NewProductsListModel: BaseNopModel
 {
     public IList<NewProductModel> Products { get; set; }
 }

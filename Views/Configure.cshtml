@@ -1,10 +1,29 @@
-﻿@{
+﻿@model SIDS.Plugin.Misc.NewProductsSlider.Models.NewProductsListModel
+@{
     Layout = "_ConfigurePlugin";
 }
 
 @await Component.InvokeAsync("StoreScopeConfiguration")
 <form asp-controller="WidgetsNivoSlider" asp-action="Configure" method="post">
-    <section class="content">
+  @*   <section class="content">
         NO CONFIGURATION NEEDED
-    </section>
+    </section> *@
+
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Country</th>
+        </tr>
+        <tr>
+            <td>@Model.Products[0].ProductName</td>
+            <td>This contact</td>
+            <td>Germany</td>
+        </tr>
+        <tr>
+            <td>@Model.Products[1].ProductName</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+        </tr>
+    </table>
 </form>

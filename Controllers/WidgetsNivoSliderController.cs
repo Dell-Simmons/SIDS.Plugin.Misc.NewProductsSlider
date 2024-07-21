@@ -52,6 +52,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
                 NewProductModel newProduct = new()
                 {
                     Sku = p.Sku,
+                    ProductName = p.Name,
                     IsNew = p.MarkAsNew,
                     StartDate = p.MarkAsNewStartDateTimeUtc ?? default,
                     EndDate = p.MarkAsNewEndDateTimeUtc ?? default

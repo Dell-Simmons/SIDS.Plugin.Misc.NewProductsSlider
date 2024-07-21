@@ -9,6 +9,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Models;
 public record NewProductModel: BaseNopModel
 {
     public string Sku { get; set; }
+    public string ProductName { get; set; } = string.Empty;
     public bool IsNew { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
