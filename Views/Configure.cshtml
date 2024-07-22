@@ -11,19 +11,21 @@
 
     <table>
         <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
+            <th>SKU</th>
+            <th>Product Name</th>
+            <th>Is New</th>
+            <th>Start Date</th>
+            <th>End Date</th>
         </tr>
-        <tr>
-            <td>@Model.Products[0].ProductName</td>
-            <td>This contact</td>
-            <td>Germany</td>
-        </tr>
-        <tr>
-            <td>@Model.Products[1].ProductName</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-        </tr>
+        @foreach(var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Sku</td>
+                <td>@product.ProductName</td>
+                <td>@product.IsNew</td>
+                <td>@product.StartDate</td>
+                <td>@product.EndDate</td>
+            </tr>
+        }
     </table>
 </form>
