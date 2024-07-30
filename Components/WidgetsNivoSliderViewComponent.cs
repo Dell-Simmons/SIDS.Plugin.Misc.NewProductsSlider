@@ -114,6 +114,12 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
             // check if the new configuration model (not written yet) says to limit the numb of each cat num displayed
             // if (configmodel.MaxNumOfSameCatalogNumber => 0) for example
             // { remove all but the MaxNumOfSameCatalogNumber one of each catalog number }
+
+            // try this:
+            //List<Booking> yetAnotherList =
+            //     list.GroupBy(row => row.TourOperator)
+            //         .SelectMany(g => g.OrderBy(row => row.DepDate).Take(2))
+            //         .ToList();
         }
 
         /// <returns>A task that represents the asynchronous operation</returns>
