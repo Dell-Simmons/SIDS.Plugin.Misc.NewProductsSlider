@@ -44,7 +44,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
           
 
             var nivoSliderProducts = await _productService.GetProductsMarkedAsNewAsync();
-            NewProductsListModel model = new();
+            NewProductsSliderConfigurationModel model = new();
             model.Products = new List<NewProductModel>();
                   
             foreach (var p in nivoSliderProducts)

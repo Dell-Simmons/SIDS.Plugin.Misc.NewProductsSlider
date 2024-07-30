@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using Nop.Web.Framework.Models;
 
 namespace SIDS.Plugin.Misc.NewProductsSlider.Models;
-public record NewProductsListModel: BaseNopModel
+public record NewProductsSliderConfigurationModel: BaseNopModel
 {
     public IList<NewProductModel> Products { get; set; }
+    public int MaxNumberOfSameCatalogNumber { get; set; }
 }
