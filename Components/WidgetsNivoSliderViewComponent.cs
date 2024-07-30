@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Caching;
+using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Media;
 using Nop.Core.Infrastructure;
 using Nop.Services.Catalog;
@@ -61,7 +62,13 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
 
-            var nivoSliderProducts = await _productService.GetProductsMarkedAsNewAsync();
+            var nivoSliderProducts = (await _productService.GetProductsMarkedAsNewAsync()).ToList();
+            if (nivoSliderProducts == null)
+            {
+                return Content(string.Empty);
+            }
+            nivoSliderProducts = LimitCatalogNumberRepitition(nivoSliderProducts);
+
             var model = new RecentArrivalsPublicInfoModel();
             model.SliderPics = new List<SliderPicModel>();
             await _logger.InformationAsync(string.Format("in SIDS.NewProductsSlider.  There are {0} Slider Pics to show", nivoSliderProducts.Count));
@@ -100,6 +107,15 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
             return View("~/Plugins/SIDS.NewProductsSlider/Views/RecentArrivalsPublicInfo.cshtml", model);
 
         }
+
+        private IList<Product> LimitCatalogNumberRepitition(IList<Product> nivoSliderProducts)
+        {
+            return nivoSliderProducts;
+            // check if the new configuration model (not written yet) says to limit the numb of each cat num displayed
+            // if (configmodel.MaxNumOfSameCatalogNumber => 0) for example
+            // { remove all but the MaxNumOfSameCatalogNumber one of each catalog number }
+        }
+
         /// <returns>A task that represents the asynchronous operation</returns>
         protected async Task<string> GetPictureUrlAsync(int pictureId)
         {
