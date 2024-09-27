@@ -67,13 +67,13 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Components
             {
                 return Content(string.Empty);
             }
-            nivoSliderProducts = LimitCatalogNumberRepitition(nivoSliderProducts);
+          //  nivoSliderProducts = LimitCatalogNumberRepitition(nivoSliderProducts);
 
             var model = new RecentArrivalsPublicInfoModel();
             model.SliderPics = new List<SliderPicModel>();
             await _logger.InformationAsync(string.Format("in SIDS.NewProductsSlider.  There are {0} Slider Pics to show", nivoSliderProducts.Count));
            
-            foreach (var p in nivoSliderProducts)
+            foreach (var p in nivoSliderProducts.Take(5))
             {
                 SliderPicModel sliderPicModel = new SliderPicModel();
 
