@@ -37,7 +37,7 @@ namespace SIDS.Plugin.Misc.NewProductsSlider.Controllers
         #region Methods
         public async Task<IActionResult> Configure()
         {
-            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageWidgets))
+            if (!await _permissionService.AuthorizeAsync(StandardPermission.Configuration.MANAGE_WIDGETS))
             {
                 return AccessDeniedView();
             }

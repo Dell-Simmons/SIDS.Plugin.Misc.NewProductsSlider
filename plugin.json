@@ -3,7 +3,7 @@
   "FriendlyName": "Recent Items Slider",
   "SystemName": "SIDS.NewProductsSlider",
   "Version": "6.7.2024",
-  "SupportedVersions": [ "4.70" ],
+  "SupportedVersions": [ "4.80" ],
   "Author": "Steamboat Island Duck Stamps",
   "DisplayOrder": 1,
   "FileName": "SIDS.Plugin.Misc.NewProductsSlider.dll",
