@@ -7,29 +7,85 @@
 <link rel="stylesheet" href="~/Plugins/SIDS.NewProductsSlider/Content/nivoslider/themes/custom/custom.css" />
 <script asp-exclude-from-bundle="true" src="~/Plugins/SIDS.NewProductsSlider/Scripts/jquery.nivo.slider.js" asp-location="Footer"></script>
 
-<div class="slider-wrapper theme-custom">
+<style>
+    .recent-arrivals-heading {
+        line-height:32px;
+        font-size:28px;          /* Max starting size */
+        font-weight:700;
+        text-align:center;
+        white-space:nowrap;       /* Force single line */
+        overflow:hidden;          /* Prevent wrapping overflow */
+    }
+</style>
 
-    <h1 style="line-height:24px;font-size:18px;bold;text-align:center;">Here are some of our most recent additions.  Click on the image for more information:</h1>
- 
+<div class="slider-wrapper theme-custom">
+    <h1 class="recent-arrivals-heading"
+        data-fit-max="28"
+        data-fit-min="11">
+        Here are some of our most recent additions. Click on the image for more information:
+    </h1>
+
     <div id="nivo-slider" class="nivoSlider">
         @{
-            foreach(var s in Model.SliderPics)
+            foreach (var s in Model.SliderPics)
             {
                 var dataSlide = new ViewDataDictionary(ViewData)
                 {
-                    {"pictureUrl", s.PictureUrl},
-                    { "text", s.Text},
-                    { "link", s.Link},
-                    {"alttext", s.AltText },
-                    {"dataTransition", "sliceDown"}
+                    { "pictureUrl", s.PictureUrl },
+                    { "text", s.Text },
+                    { "link", s.Link },
+                    { "alttext", s.AltText },
+                    { "dataTransition", "sliceDown" }
                 };
-                    @await Html.PartialAsync("~/Plugins/SIDS.NewProductsSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide)
+                @await Html.PartialAsync("~/Plugins/SIDS.NewProductsSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide)
             }
-         }
+        }
     </div>
 </div>
+
 <script asp-location="Footer">
     $(window).on('load', function () {
         $('#nivo-slider').nivoSlider();
     });
+
+    (function () {
+        function fitSingleLine(el) {
+            if (!el) return;
+            var max = parseInt(el.getAttribute('data-fit-max')) || 28;
+            var min = parseInt(el.getAttribute('data-fit-min')) || 11;
+
+            // Reset to max before measuring
+            el.style.fontSize = max + 'px';
+
+            // Binary search to minimize reflows
+            var low = min, high = max, best = min;
+            while (low <= high) {
+                var mid = (low + high) >> 1;
+                el.style.fontSize = mid + 'px';
+                if (el.scrollWidth <= el.clientWidth) {
+                    best = mid;
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+            el.style.fontSize = best + 'px';
+        }
+
+        var heading = document.querySelector('.recent-arrivals-heading');
+        if (!heading) return;
+
+        var ro;
+        function refit() { fitSingleLine(heading); }
+
+        // Initial fit after layout settled
+        window.requestAnimationFrame(refit);
+        window.addEventListener('resize', refit, { passive: true });
+
+        // Observe container width changes (e.g. responsive layout)
+        if ('ResizeObserver' in window) {
+            ro = new ResizeObserver(refit);
+            ro.observe(heading.parentElement);
+        }
+    })();
 </script>
