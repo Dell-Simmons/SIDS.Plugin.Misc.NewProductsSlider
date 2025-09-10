@@ -93,7 +93,7 @@ public class WidgetsNivoSliderViewComponent : NopViewComponent
             var seName = await _urlRecordService.GetSeNameAsync(p, 0, true, false);
             sliderPicModel.Link = _webHelper.GetStoreLocation() + seName;
 
-            sliderPicModel.Text = p.Name;
+            sliderPicModel.Text = string.Empty;//  p.Name;
             sliderPicModel.AltText = defaultPic.TitleAttribute;
 
             model.SliderPics.Add(sliderPicModel);
