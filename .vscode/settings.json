@@ -1,0 +1,33 @@
+{
+  "editor.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "window.zoomLevel": 2,
+   "editor.codeLens": true,
+   "editor.codeLensFontSize": 6,
+  "editor.guides.indentation": true,
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.bracketPairs": "active",
+  "dotnet.codeLens.enableReferencesCodeLens": true,
+   "dotnet.codeLens.enableTestsCodeLens": true,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.experimental.modernUI": true,
+  "workbench.colorCustomizations": {
+  "editorIndentGuide.background1": "#555555",
+  "editorIndentGuide.activeBackground1": "#999999"
+},
+"editor.tokenColorCustomizations": {
+    "comments": "#00CC66"
+},
+"editor.minimap.enabled": false,
+"files.exclude": {
+  "**/.git": true,
+  "**/.svn": true,
+  "**/.hg": true,
+  "**/.jj": true,
+  "**/.DS_Store": true,
+  "**/Thumbs.db": true
+},
+"python-envs.defaultEnvManager": "ms-python.python:system",
+"git-graph.showStatusBarItem": true,
+"dotnet.defaultSolution": "SIDSManagerClean.sln"
+}
